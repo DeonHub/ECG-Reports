@@ -15,7 +15,7 @@
 
                             {% comment %} <img src="{{ cardio.profile.url }}"  width="250px" height="250px" style="border-radius:500px;"> {% endcomment %}
                             
-                            {% if cardio.profile.url %}
+                            {% if cardio.profile %}
                             <img src="{{ cardio.profile.url }}"  width="250px" height="250px" style="border-radius:500px;">
                             {% else %}
                             <img src="{% static 'superuser/media/ecg.png' %}"  width="250px" height="250px" style="border-radius:500px;">

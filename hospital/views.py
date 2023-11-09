@@ -101,7 +101,7 @@ def load_link(request):
         
         headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Bearer {TEST_SECRET_KEY}',
+        'Authorization': f'Bearer {LIVE_SECRET_KEY}',
         'Cookie': '__cf_bm=8sacAExva.ukx_O5_UIA3ADKjlyZN2jdncsgYe37kuA-1691082991-0-AQVXZihJHivW9qyNq2g19KbiVj0rVUKXpIPg85C2iwJp/9w0wUzRXqboUv31FremjpM0aEu0P1vEMq523e35mm0=; sails.sid=s%3AEB2jwX5vCughtr-rOqxbw1m4eBDPY772.668XInXm6aEPcviAmNTgSVf02FWB7rS8w7zAqNNwp0I'
         }
 
@@ -136,7 +136,7 @@ def purchaseHistory(request, **kwargs):
 
     payload = {}
     headers = {
-    'Authorization': f'Bearer {TEST_SECRET_KEY}',
+    'Authorization': f'Bearer {LIVE_SECRET_KEY}',
     'Cookie': '__cf_bm=w.HWO0alHmjK2DRbYrFN_w51lbwKgbOlNK32CF_HpcA-1691179963-0-AcBR9QqY/fu86rLS5g9bOBLD+VVwf8XuA8C12jxI/LAeaetk/Wi9hwWWu2sNL+XEfDPA3gW/P56kOASp05XFzCg=; sails.sid=s%3Am7rvH9vM9-6TLU06BoSA0wncwno0m58F.CGwlclRV57YzESptIo4JhBbkceQ40rAGjIzo8cWAW5s'
     }
 
