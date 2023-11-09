@@ -1,0 +1,122 @@
+{% extends 'superuser/base.html' %}
+{% load static %} 
+{% block content %}
+         
+        <div class="form-body">
+            <div class="row">
+                <div class="form-holder">
+                    <div class="form-content">
+                        <div class="form-items">
+        
+                            <h3 class="text-center mb-4">Hospital Details</h3> 
+                            <div class='top-image'>
+              
+                                {% if hospital.logo %}
+                                <img src="{{ hospital.logo.url }}" width="250px" height="250px">
+                                {% else %}
+                                <img src="{% static 'superuser/media/profile.png' %}" width="250px" height="250px">
+                                {% endif %}
+                            </div>
+
+
+                            <ul class="list-group">
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                      <div class="fw-bold">Hospital/Clinic:</div>{{ hospital.hospital_name }}
+                                    </div>
+                                  </li>
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                      <div class="fw-bold">Admin username:</div>
+                                      {{ hospital.user.username }}
+                                    </div>
+                                  </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Contact:</div>{{ hospital.contact}}
+                                  </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Email:</div>
+                                    {{ hospital.user.email }}
+                                  </div>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Available slots:</div>
+                                    {{ hospital.available_slots }}
+                                  </div>
+                                </li>
+                              
+
+
+                              
+                              {% comment %} <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">Gender:</div>
+                                  {% if cardiologist.gender == 1 %} 
+                                    Male
+                                  {% else %}
+                                    Female
+                                  {% endif %}
+                                </div>
+                              </li> {% endcomment %}
+
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Country:</div>
+                                    {{ hospital.country }}
+                                  </div>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                      <div class="fw-bold">Town/City:</div>
+                                      {{ hospital.town }}
+                                    </div>
+                                </li>
+
+                      
+
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class="fw-bold">Address :</div>
+                                {% if hospital.address %}
+                                    {{ hospital.address }}
+                                {% else %}
+                                    Not Provided
+                                {% endif %}
+                              </div>
+                            </li>
+
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                              <div class="ms-2 me-auto">
+                                <div class="fw-bold">Added on:</div>
+                                {{ hospital.created_on }}
+                              </div>
+                          </li>
+
+                
+                  </ul>
+<br/>
+                             
+
+                              <div class="mt-3 text-center">
+                                <a onclick="window.history.go(-1); return false;"><button type="button" class="btn btn-primary btn-sm mr-3">Back</button></a>
+
+                                {% comment %} <a href="{% url 'superuser:editCardioDetails' id=cardiologist.id  %}"><button type="button" class="btn btn-sm ml-3" style="background-color: #006c40; color: #fff">Edit Details</button></a> {% endcomment %}
+                                {% comment %} <a href="#"><button type="button" class="btn btn-sm ml-3" style="background-color: #006c40; color: #fff">Edit Details</button></a> {% endcomment %}
+                           
+                            </div>
+
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+   
+{% endblock %}

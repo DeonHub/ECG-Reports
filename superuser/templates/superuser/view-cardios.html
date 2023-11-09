@@ -1,0 +1,47 @@
+{% extends 'superuser/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'superuser:createCardio' %}"><button class="btn btn-sm fee-type" style="background-color: #343A40; color:#fff;"><p>Add Cardiologist</p></button></a>
+
+<br>
+<br>
+<br>
+<div class="table-responsive-md">
+    {% csrf_token %}
+<table class="table table-striped" id="cardiox">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email address</th>
+            <th>Contact</th>
+            <th>Added On</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+      {% csrf_token %}
+
+        {% for cardio in cardios %}
+
+        <tr id="{{ cardio.id }}">
+            <td>{{ cardio.user.username }}</td>
+            <td>{{ cardio.user.email }}</td>
+            <td>{{ cardio.contact }}</td>
+            <td>{{ cardio.created_on }}</td>
+            <td><a href="{% url 'superuser:viewCardioDetails' pk=cardio.id %}"><button type="button" class="btn btn-primary btn-sm">View Details</button></a></td>
+            <td><a href="{% url 'superuser:editCardioDetails' id=cardio.id %}"><button type="button" class="btn btn-sm" style="background-color: #006c40; color: #fff">Edit Details</button></a></td>
+            <td><a href="{% url 'superuser:deleteCardio' id=cardio.id %}" class="cardio-delete" id="{{ cardio.id }}"><button class="btn btn-danger btn-sm">Delete</button></a></td>
+
+        </tr>
+       
+        {% endfor %}
+
+    </tbody>
+</table>
+
+</div> 
+{% endblock %}

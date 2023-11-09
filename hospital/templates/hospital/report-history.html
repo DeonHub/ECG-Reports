@@ -1,0 +1,58 @@
+{% extends 'hospital/base.html' %}
+
+{% block content %}
+
+{% comment %} <a href="{% url 'superuser:createCardio' %}"><button class="btn btn-sm fee-type" style="background-color: #8a1454; color:#fff;"><p>Add Cardiologist</p></button></a> {% endcomment %}
+
+<br>
+<br>
+<br>
+<div class="table-responsive-md">
+    {% csrf_token %}
+<table class="table table-striped" id="reportx">
+    <thead>
+        <tr>
+            <th>Report #</th>
+            <th>Patient</th>
+            <th>Cardiologist</th>
+            <th>Status</th>
+            <th>Uploaded on</th>
+            <th></th>
+            {% comment %} <th></th> {% endcomment %}
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+      {% csrf_token %}
+
+        {% for report in reports %}
+
+        <tr id="{{ report.id }}">
+            <td>{{ report.report_number }}</td>
+            <td>{{ report.patient_name }}</td>
+            <td> {% if report.cardiologist %} Dr. {{ report.cardiologist.user.username }} {% else %} None {% endif %} </td>
+            <td>{{ report.status }}</td>
+            <td>{{ report.date_created }}</td>
+            <td><a href="{% url 'hospital:viewReportDetails' pk=report.id %}"><button type="button" class="btn btn-primary btn-sm">View Details</button></a></td>
+            {% comment %} <td><a href="#" class="report-delete" id="{{ report.id }}"><button class="btn btn-danger btn-sm">Delete</button></a></td> {% endcomment %}
+
+            
+            <td>
+                {% if  report.completed %}
+                <a href="{% url 'cardio:downloadReport' pk=report.pk %}"><button type="button" class="btn btn-success btn-sm">Download Report</button></a>
+                {% else %}
+                <a href="#"><button type="button" class="btn btn-secondary btn-sm" disabled>Download Report</button></a>
+                {% endif %}
+            </td>
+
+
+        </tr>
+       
+        {% endfor %}
+
+    </tbody>
+</table>
+
+</div> 
+{% endblock %}

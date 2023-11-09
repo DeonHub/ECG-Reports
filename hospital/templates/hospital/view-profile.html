@@ -1,0 +1,99 @@
+{% extends 'hospital/base.html' %}
+
+ {% load static %}
+
+{% block content %}
+
+        <div class="form-body">
+            <div class="row">
+                <div class="form-holder">
+                    <div class="form-content">
+                        <div class="form-items">
+        
+                          {% comment %} {{response}} {% endcomment %}
+                            <h3 class="text-center mb-4">Hospital/Clinic Profile</h3> 
+
+                            {% if hospital.logo.url %}
+                            <img src="{{ hospital.logo.url }}"  width="250px" height="250px" style="border-radius:500px;">
+                            {% else %}
+                            <img src="{% static 'superuser/media/ecg.png' %}"  width="250px" height="250px" style="border-radius:500px;">
+
+                            {% endif %}
+                            
+
+                            <ul class="list-group">
+                               
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                      <div class="fw-bold">Hospital/Clinic name:</div>{{ hospital.hospital_name }}
+                                    </div>
+                                  </li>
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                      <div class="fw-bold">Admin Username:</div>{{ hospital.user.username }}
+                                    </div>
+                                  </li>
+
+                                
+                                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                      <div class="fw-bold">Email:</div>{{ hospital.user.email }}
+                                    </div>
+                                  </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Contact:</div>{{ hospital.contact }}
+                                  </div>
+                                </li>
+
+                                
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">Country:</div>{{ hospital.country }}
+                                </div>
+                              </li>
+
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">City/Town:</div>{{ hospital.town }}
+                                </div>
+                              </li>
+
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">Address:</div>{{ hospital.address }}
+                                </div>
+                              </li>
+
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">Available slots:</div>{{ hospital.available_slots }}
+                                </div>
+                              </li>
+
+                              <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                  <div class="fw-bold">Created on:</div>{{ hospital.created_on }}
+                                </div>
+                              </li>
+
+
+
+                              
+                              </ul>
+                              <br/>
+                              <center>
+                                <a onclick="window.history.go(-1); return false;"><button type="button" class="btn btn-primary btn-sm">Back</button></a>
+                                <a href="{% url 'hospital:updateProfile' %}"><button type="button" class="btn btn-success btn-sm">Update Profile</button></a>
+    
+                              </center>
+
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+   
+{% endblock %}

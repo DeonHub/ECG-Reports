@@ -1,0 +1,45 @@
+{% extends 'hospital/base.html' %}
+
+{% block content %}
+
+{% comment %} <a href="{% url 'superuser:createCardio' %}"><button class="btn btn-sm fee-type" style="background-color: #8a1454; color:#fff;"><p>Add Cardiologist</p></button></a> {% endcomment %}
+
+<br>
+<br>
+<br>
+<div class="table-responsive-md">
+    {% csrf_token %}
+<table class="table table-striped" id="purchasex">
+    <thead>
+        <tr>
+            <th>Invoice #</th>
+            <th>Amount Paid</th>
+            <th>Slots Purchased</th>
+            <th>Purchased on</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+      {% csrf_token %}
+
+        {% for purchase in purchases %}
+
+        <tr id="{{ purchase.id }}">
+            <td>{{ purchase.invoice_no }}</td>
+            <td>{{ purchase.amount }}0</td>
+            <td>{{ purchase.slots_bought }}</td>
+            <td>{{ purchase.date_created }}</td>
+            <td><a href="#"><button type="button" class="btn btn-primary btn-sm">View Details</button></a></td>
+            <td><a href="#" class="hospital-delete" id="{{ hospital.id }}"><button class="btn btn-danger btn-sm">Delete</button></a></td>
+
+        </tr>
+       
+        {% endfor %}
+
+    </tbody>
+</table>
+
+</div> 
+{% endblock %}

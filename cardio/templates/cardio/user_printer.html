@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title> {{ detail.invoice_no }} </title>
+        {% load static %}
+
+        <style>
+
+            body{
+                margin: 0;
+                padding: 0;
+            }
+            h1,h2,h3,h4,h5,h6{
+                margin: 0;
+                padding: 0;
+            }
+            p{
+                margin: 0;
+                padding: 0;
+            } 
+            .d-flex{
+                display: flex;
+                flex-direction: row;
+            }
+            .container{
+                width: 100%;
+            }
+            .brand-section{
+              
+            }
+            .logo{
+                width: 100%;
+            }
+            
+            .row{
+                display: flex;
+                flex-direction: row;
+                
+            }
+            .user{
+                display: flex;
+                flex-direction: row;
+            }
+            .col-6{
+                width: 100%;
+            }
+            .text-white{
+                color: #fff;
+            }
+
+    
+            
+            .sub-heading{
+                color: #262626;
+                margin-bottom: 05px;
+            }
+            table{
+                background-color: #fff;
+                width: 100%;
+                border-collapse: collapse;
+            }
+            table thead tr{
+                border: 1px solid #111;
+                background-color: #f2f2f2;
+            }
+            table td {
+                vertical-align: middle !important;
+                text-align: center;
+            }
+            table th, table td {
+                padding-top: 08px;
+                padding-bottom: 08px;
+            }
+            .table-bordered{
+                box-shadow: 0px 0px 5px 0.5px gray;
+            }
+            .table-bordered td, .table-bordered th {
+                border: 1px solid #dee2e6;
+            }
+            .text-right{
+                text-align: center;
+            }
+            .w-20{
+                width: 20%;
+            }
+            .float-right{
+                float: right;
+            }
+
+            .info{
+              font-weight: normal;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+<div class="container" >
+    {% comment %} <center>
+    <div class="brand-section">
+        <div class=" user" style="display:flex; flex-direction: column;">
+            <div class="">
+                <img src="superuser\static\superuser\media\ekg-remove.png" height="100px" width="200px">
+            </div>
+            <div class="">
+                <div class="company-details" style="margin-top: -10px; font-size: 12px;">
+                    <h3 class="">ECG REPORTING SITE</h3>
+                    <p class="">www.ecgreports.com.gh</p>
+                    <p class="">+233 55 565 1235</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</center> {% endcomment %}
+
+<br/>
+<br/>
+<br/>
+    <div class="body-sections">
+        <div class="row" style="display: flex; flex-direction: row;">
+            <div class="col-6">
+                <h4 class="">Date: <span class="info">{{ report.date_created|date:'jS F, Y' }}</span></h4>
+                <h4 class="">Job Number: <span class="info">{{ report_history.report_number }}</span></h4>
+                <hr>
+                <h4 class="">Patient: <span class="info">{{ report_history.patient_name|upper  }}</span></h4>
+                <h4 class="">Requester: <span class="info">{{ report_history.hospital.hospital_name|upper }}</span></h4>
+                <h4 class="">Patient number: <span class="info">{{ report_history.patient_number|upper }}</span></h4>
+                <h4 class="">Patient age: <span class="info">{{ report_history.patient_age|upper }}</span></h4>
+                <h4 class="">Patient type: <span class="info">{{ report_history.patient_type|upper }}</span></h4>
+                <hr>
+                <h4 class="">Study: <span class="info">ELECTROCARDIOGRAM</span></h4>
+                <hr>
+            </div>
+            <br/>
+       
+        </div>
+    </div>
+
+
+    <br/>
+
+    <div class="body-section">
+      <div class="row" style="display: flex; flex-direction: row;">
+          <div class="col-6">
+              <h4 class="">Clinical Information: <span class="info">{{ report.clinical_information }}</span></h4><br>
+              
+              <h4 class="">Report</h4>
+              <h4 class="">Rhythm: <span class="info">{{ report.rhythm }}</span></h4>
+              <h4 class="">Rate: <span class="info">{{ report.rate }}</span></h4>
+              <h4 class="">P wave: <span class="info">{{ report.p_wave }}</span></h4>
+              <h4 class="">ST segment: <span class="info">{{ report.st_segment }}</span></h4>
+              <h4 class="">PR interval: <span class="info">{{ report.pr_interval }}</span></h4>
+              
+              <h4 class="">QRS complex: <span class="info">{{ report.qrs_complex }}</span></h4>
+              <h4 class="">T wave: <span class="info">{{ report.t_wave }}</span></h4>
+              <h4 class="">Axis: <span class="info">{{ report.axis }}</span></h4>
+              <h4 class="">R wave progression: <span class="info">{{ report.r_wave_progression }}</span></h4>
+              <h4 class="">Sokolow-lyon index: <span class="info">{{ report.sokolow_lyon_index }}</span></h4>
+              <h4 class="">R wave in AVL: <span class="info">{{ report.r_wave_in_avl }}</span></h4>
+              
+
+              <h4 class="">Cornel voltage: <span class="info">{{ report.cornel_voltage }}</span></h4>
+              <h4 class="">QTc: <span class="info">{{ report.qtc }}</span></h4><br><br>
+
+              <h4 class="">Conclusion: <span class="info">{{ report.conclusion }}</span></h4>
+              <h4 class="">Recommendation: <span class="info">{{ report.recommendation }}</span></h4>
+              
+              
+          </div>
+          <br/>
+     
+        </div>
+    </div>
+
+    <div style=" margin-left: 600px; text-align: center;">
+      <img src={{ report_history.cardiologist.signature.url }} height="50px" width="100px"><br/>
+      ............................................
+      <p>DR. {{ report_history.cardiologist.user.username|upper }}</p>
+      </div>
+ 
+    {% comment %} <div class="body-section">
+
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <th>Fee Item</th>
+                    <th class="w-20">Price({{base}})</th>
+                    <th class="w-20">Total({{base}})</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for key, value in data.items %}
+                <tr>
+                    <td> {{ key }} </td> 
+                    <td> {{ value }} </td>
+                    <td> {{ value }} </td>
+                </tr>
+            {% endfor %}
+
+                <tr>
+                    <td colspan="2" class="text-right">Grand Total ({{base}})</td>
+                    <td> {{ invoice.total_amount }} </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right">Renewal Bill ({{base}})</td>
+                    <td> {{ detail.expiration_bill }} </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right">Amount Paid ({{base}})</td>
+                    <td> {{ detail.amount_paid }} </td>
+                </tr>
+               
+            </tbody>
+        </table> 
+
+        <br>
+        {% if detail.payment_status == 'part' %}
+        <h3 class="">Payment Status: Part </h3>
+        {% else %}
+        <h3 class="">Payment Status: Full </h3>
+        {% endif %}
+        {% if detail.arrears %}
+        <h3 class="">Arrears: {{base}} {{ detail.arrears }}</h3>
+        {% else %}
+        <h3 class="">Arrears: None</h3>
+        {% endif %}
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+        
+        <div style=" margin-left: 600px; text-align: center;">
+        <img src={{ company.signature.url }} height="50px" width="50px"><br/>
+        ............................................
+        <p>The Manager</p>
+        </div>
+   
+
+    </div> {% endcomment %}
+
+
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="body-section" style="float: right; text-align: center;">
+        <p>&copy; Copyright {{ year }} - GR8TM3NS COMPANY LIMITED. All rights reserved. 
+            <a href="https://gr8tm3ns-rental-agency.business.site/" class="float-right">https://gr8tm3ns-rental-agency.business.site/</a>
+        </p>
+    </div>      
+</div>      
+
+    </body>
+</html>

@@ -1,0 +1,71 @@
+{% extends 'cardio/base.html' %}
+
+{% block content %}
+
+{% comment %} <a href="{% url 'superuser:createCardio' %}"><button class="btn btn-sm fee-type" style="background-color: #8a1454; color:#fff;"><p>Add Cardiologist</p></button></a> {% endcomment %}
+
+{% if signature is not None %}
+
+<br>
+<br>
+<br>
+<div class="table-responsive-md">
+    {% csrf_token %}
+    <table class="table table-striped" id="reportx">
+        <thead>
+            <tr>
+                {% comment %} <th>Report #</th> {% endcomment %}
+                <th>Hospital</th>
+                <th>Patient</th>
+                <th>Status</th>
+                <th>Uploaded on</th>
+                <th></th>
+                {% comment %} <th></th> {% endcomment %}
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% csrf_token %}
+
+            {% for report in reports %}
+
+            <tr id="{{ report.id }}">
+                {% comment %} <td>{{ report.report_number }}</td> {% endcomment %}
+                <td>{{ report.hospital.hospital_name }}</td>
+                <td> {{ report.patient_name }} </td>
+                <td>{{ report.status }}</td>
+                <td>{{ report.date_created }}</td>
+                <td><a href="{% url 'cardio:viewReportDetails' pk=report.id %}"><button type="button" class="btn btn-primary btn-sm">View Details</button></a></td>
+                {% comment %} <td><a href="#" class="report-delete" id="{{ report.id }}"><button class="btn btn-danger btn-sm">Delete</button></a></td> {% endcomment %}
+
+                
+                <td>
+                    {% if  report.completed %}
+                    <a href="{% url 'cardio:downloadReport' pk=report.pk %}"><button type="button" class="btn btn-success btn-sm">Download Report</button></a>
+                    {% else %}
+                    <a href="#"><button type="button" class="btn btn-secondary btn-sm" disabled>Download Report</button></a>
+                    {% endif %}
+                </td>
+
+
+            </tr>
+        
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+</div> 
+
+{% else %}
+<div style="margin-top: 10%;">
+    <center>
+        <p>You need to upload signature to review images.</p>
+        <p>Upload signature by updating profile.</p>
+        <a href="{% url "cardio:viewProfile" %}"><button type="button" class="btn btn-success btn-sm">View Profile</button></a>
+    </center>
+</div>
+
+{% endif %}
+{% endblock %}

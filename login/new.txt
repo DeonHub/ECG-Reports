@@ -1,0 +1,83 @@
+## user ##
+username
+email
+password
+status
+
+
+## cardiologist ##
+profile
+signature
+
+
+admin creates cardios and hospitals
+top up for them
+
+
+
+## profile ##
+user
+gender
+contact
+image
+country
+
+
+## hospital ##
+profile
+address
+city
+country
+credits available
+
+
+## credits history ##
+hospital
+amount
+credits remaining
+date created
+
+
+## purchase history ##
+hospital
+amount
+credits
+date purchased
+
+
+## report history ##
+hospital
+cardiologist
+uploaded image
+report
+status
+
+
+
+
+
+admin stuff
+profile things
+dashboard
+total cardio, hospitals, reports
+crud for cardios
+crud for hospitals
+purchase history
+credit history and buy credit
+report history
+
+
+cardio stuff
+dashboard
+profile things
+total reports available, total done, done pending
+report history
+crud for reports (upload images) form opens for the template
+
+
+hospital stuff
+profile things
+dashboard 
+total uploaded, total done, total pending
+total credits and purchase credit
+reports history page

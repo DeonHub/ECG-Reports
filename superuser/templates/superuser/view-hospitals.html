@@ -1,0 +1,45 @@
+{% extends 'superuser/base.html' %}
+
+{% block content %}
+
+{% comment %} <a href="{% url 'superuser:createCardio' %}"><button class="btn btn-sm fee-type" style="background-color: #8a1454; color:#fff;"><p>Add Cardiologist</p></button></a> {% endcomment %}
+
+<br>
+<br>
+<br>
+<div class="table-responsive-md">
+    {% csrf_token %}
+<table class="table table-striped" id="hospitalx">
+    <thead>
+        <tr>
+            <th>Hospital/Clinic</th>
+            <th>Username</th>
+            <th>Available Slots</th>
+            <th>Created on</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+      {% csrf_token %}
+
+        {% for hospital in hospitals %}
+
+        <tr id="{{ hospital.id }}">
+            <td>{{ hospital.hospital_name }}</td>
+            <td>{{ hospital.user.username }}</td>
+            <td>{{ hospital.available_slots }}</td>
+            <td>{{ hospital.created_on }}</td>
+            <td><a href="{% url 'superuser:viewHospitalDetails' pk=hospital.id %}"><button type="button" class="btn btn-primary btn-sm">View Details</button></a></td>
+            <td><a href="{% url 'superuser:deleteHospital' id=hospital.id %}" class="hospital-delete" id="{{ hospital.id }}"><button class="btn btn-danger btn-sm">Delete</button></a></td>
+
+        </tr>
+       
+        {% endfor %}
+
+    </tbody>
+</table>
+
+</div> 
+{% endblock %}

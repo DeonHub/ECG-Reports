@@ -1,0 +1,362 @@
+{% extends 'cardio/base.html' %}
+ {% load static %}
+
+{% block content %}
+         
+<div class="mt-5">
+    <div class="row">
+
+        <div class="col">
+            <div class="input mb-3">
+                <p><b>Requester: </b>{{ report.hospital.hospital_name }}</p>
+            </div> 
+
+        </div>
+
+        <div class="col">
+        <div class="input mb-3">
+            <p><b>Patient name: </b>{{ report.patient_name }}</p>
+        </div> 
+
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col">
+            <div class="input mb-3">
+                <p><b>Patient age: </b>{{ report.patient_age }}</p>
+            </div> 
+        </div>
+        
+    
+        <div class="col">
+            <div class="input mb-3">
+                <p><b>Patient type: </b>{{ report.patient_type }}</p>
+            </div> 
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+  <hr>
+
+  <center>
+    <img src="{{ report.image.url }}" alt="" style="border-radius: 5px;">
+    <input type="hidden" value="{{ report.id }}" id="report_id" >
+  </center>
+
+  <hr>
+  <center>
+
+    <div class="form-body" id="forbid">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3 class="text-center mb-4" >Report Form</h3>
+    
+                        <form class="" action="" method="post" enctype="multipart/form-data" id="slot-form" data-link-url="{% url 'hospital:ajax_load_link' %}">
+    
+                            {% csrf_token %}
+   
+                            <h6 class="mt-3">Please fill the report form below based on the observations made from the image</h6>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="clinical_information">Clinical Information</label>
+                                <input class="form-control" type="text" id="clinical_information" name="clinical_information" {% if existing %} value="{{ existing_report.clinical_information }}" {% endif %} placeholder="Enter clinical information..." >
+                            </div>
+                            
+
+                            <input class="form-control" type="text" id="report" name="report" hidden>
+
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="rhythm">Rhythm</label>
+                                <input class="form-control" type="text" id="rhythm" name="rhythm" {% if existing %} value="{{ existing_report.rhythm }}" {% endif %} placeholder="Enter rhythm..."  >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="rate">Rate</label>
+                                <input class="form-control" type="text" id="rate" name="rate" {% if existing %} value="{{ existing_report.rate }}" {% endif %} placeholder="Enter rate...">
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="p_wave">P wave</label>
+                                <input class="form-control" type="text" id="p_wave" name="p_wave" {% if existing %} value="{{ existing_report.p_wave }}" {% endif %} placeholder="Enter P wave result..." >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="st_segment">ST Segment</label>
+                                <input class="form-control" type="text" id="st_segment" name="st_segment" {% if existing %} value="{{ existing_report.st_segment }}" {% endif %} placeholder="Enter ST segment value..." >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="pr_interval">PR Interval</label>
+                                <input class="form-control" type="text" id="pr_interval" name="pr_interval" {% if existing %} value="{{ existing_report.pr_interval }}" {% endif %} placeholder="Enter PR interval value..." >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="qrs_complex">QRS Complex</label>
+                                <input class="form-control" type="text" id="qrs_complex" name="qrs_complex" {% if existing %} value="{{ existing_report.qrs_complex }}" {% endif %} placeholder="Enter QRS complex value..." >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="t_wave">T wave</label>
+                                <input class="form-control" type="text" id="t_wave" name="t_wave" {% if existing %} value="{{ existing_report.t_wave }}" {% endif %} placeholder="Enter T wave value..."  >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="axis">Axis</label>
+                                <input class="form-control" type="text" id="axis" name="axis" {% if existing %} value="{{ existing_report.axis }}" {% endif %} placeholder="Enter axis value..."  >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="r_wave_progression">R wave Progression</label>
+                                <input class="form-control" type="text" id="r_wave_progression" name="r_wave_progression" {% if existing %} value="{{ existing_report.r_wave_progression }}" {% endif %} placeholder="Enter R wave progression value..."  >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="sokolow_lyon_index">Sokolow-lyon index</label>
+                                <input class="form-control" type="text" id="sokolow_lyon_index" name="sokolow_lyon_index" {% if existing %} value="{{ existing_report.sokolow_lyon_index }}" {% endif %} placeholder="Enter Sokolow-lyon index value..."  >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="r_wave_in_avl">R wave in AVL</label>
+                                <input class="form-control" type="text" id="r_wave_in_avl" name="r_wave_in_avl" {% if existing %} value="{{ existing_report.r_wave_in_avl }}" {% endif %} placeholder="Enter R wave in AVL value..."  >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="cornel_voltage">Cornel voltage</label>
+                                <input class="form-control" type="text" id="cornel_voltage" name="cornel_voltage" {% if existing %} value="{{ existing_report.cornel_voltage }}" {% endif %} placeholder="Enter Cornel voltage value..."  >
+                            </div>
+                            
+                            <div class="input-group mt-3">
+                                <label class="input-group-text" for="qtc">QTc</label>
+                                <input class="form-control" type="text" id="qtc" name="qtc" {% if existing %} value="{{ existing_report.qtc }}" {% endif %} placeholder="Enter QTc value..."  >
+                            </div>
+                            
+
+                             <h6 class="mt-5">Conclusion</h6>
+                              <div >
+                                <textarea type="text" rows="10" cols="10" class="form-control" name="conclusion" id="conclusion" placeholder="Type conclusion here....">{% if existing %} {{ existing_report.conclusion }} {% endif %}</textarea>
+                              </div>
+
+
+                              <h6 class="mt-5">Recommendation</h6>
+                              <div >
+                                <textarea type="text" rows="10" cols="10" class="form-control" name="recommendation" id="recommendation" placeholder="Type recommendation here....">{% if existing %} {{ existing_report.recommendation }} {% endif %}</textarea>
+                              </div>
+
+
+                        </form>
+    
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     </center>
+    
+  <ul id="question-list">
+    <!-- Questions will be added dynamically here -->
+  </ul>
+    <center>
+    <br>
+
+
+    <div class="mt-3 text-center">
+        <a onclick="window.history.go(-1); return false;"><button type="button" class="btn btn-primary btn-sm mr-3" >Back</button></a>
+
+        <button type="button" class="btn btn-sm ml-3" style="background-color: #006c40; color: #fff" onclick="saveReport()">Save Report and Edit later</button>
+        <button type="button" class="btn btn-sm ml-3" style="background-color: #8a1454; color: #fff" onclick="finalizeReport()">Finalize Report and Submit</button>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+</center>
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+
+    function saveReport() {
+
+        var report_id = document.getElementById("report_id").value;
+        var clinical_information = document.getElementById("clinical_information").value;
+        var report = document.getElementById("report").value;
+        var rhythm = document.getElementById("rhythm").value;
+        var rate = document.getElementById("rate").value;
+        var p_wave = document.getElementById("p_wave").value;
+        var st_segment = document.getElementById("st_segment").value;
+        var pr_interval = document.getElementById("pr_interval").value;
+        var qrs_complex = document.getElementById("qrs_complex").value;
+        var t_wave = document.getElementById("t_wave").value;
+        var axis = document.getElementById("axis").value;
+        var r_wave_progression = document.getElementById("r_wave_progression").value;
+        var sokolow_lyon_index = document.getElementById("sokolow_lyon_index").value;
+        var r_wave_in_avl = document.getElementById("r_wave_in_avl").value;
+        var cornel_voltage = document.getElementById("cornel_voltage").value;
+        var qtc = document.getElementById("qtc").value;
+        var conclusion = document.getElementById("conclusion").value;
+        var recommendation = document.getElementById("recommendation").value;
+        
+
+       
+        
+        
+        const data = {
+
+            report_id: report_id,
+            clinical_information: clinical_information,
+            report: report,
+            rhythm: rhythm,
+            rate: rate,
+            p_wave: p_wave,
+            st_segment: st_segment,
+            pr_interval: pr_interval,
+            qrs_complex: qrs_complex,
+            t_wave: t_wave,
+            axis: axis,
+            r_wave_progression: r_wave_progression,
+            sokolow_lyon_index: sokolow_lyon_index,
+            r_wave_in_avl: r_wave_in_avl,
+            cornel_voltage: cornel_voltage,
+            qtc: qtc,
+            conclusion: conclusion,
+            recommendation: recommendation
+  
+          };
+            
+       
+          var csrf = $('input[name=csrfmiddlewaretoken]').val()
+          var url = "{% url 'cardio:saveReport' %}"
+          var redirect = "{% url 'cardio:reportHistory' %}"
+       
+             
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrf
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            if (response.ok) {
+              console.log('Success!');
+              alert("Report saved successfully")
+              window.location.href = redirect
+  
+            } else {
+              console.log('Error:', response.status);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+         
+
+    }
+
+
+
+    function finalizeReport() {
+
+        var report_id = document.getElementById("report_id").value;
+        var clinical_information = document.getElementById("clinical_information").value;
+        var report = document.getElementById("report").value;
+        var rhythm = document.getElementById("rhythm").value;
+        var rate = document.getElementById("rate").value;
+        var p_wave = document.getElementById("p_wave").value;
+        var st_segment = document.getElementById("st_segment").value;
+        var pr_interval = document.getElementById("pr_interval").value;
+        var qrs_complex = document.getElementById("qrs_complex").value;
+        var t_wave = document.getElementById("t_wave").value;
+        var axis = document.getElementById("axis").value;
+        var r_wave_progression = document.getElementById("r_wave_progression").value;
+        var sokolow_lyon_index = document.getElementById("sokolow_lyon_index").value;
+        var r_wave_in_avl = document.getElementById("r_wave_in_avl").value;
+        var cornel_voltage = document.getElementById("cornel_voltage").value;
+        var qtc = document.getElementById("qtc").value;
+        var conclusion = document.getElementById("conclusion").value;
+        var recommendation = document.getElementById("recommendation").value;
+        
+
+
+        
+        const data = {
+
+            report_id: report_id,
+            clinical_information: clinical_information,
+            report: report,
+            rhythm: rhythm,
+            rate: rate,
+            p_wave: p_wave,
+            st_segment: st_segment,
+            pr_interval: pr_interval,
+            qrs_complex: qrs_complex,
+            t_wave: t_wave,
+            axis: axis,
+            r_wave_progression: r_wave_progression,
+            sokolow_lyon_index: sokolow_lyon_index,
+            r_wave_in_avl: r_wave_in_avl,
+            cornel_voltage: cornel_voltage,
+            qtc: qtc,
+            conclusion: conclusion,
+            recommendation: recommendation
+  
+          };
+            
+       
+          var csrf = $('input[name=csrfmiddlewaretoken]').val()
+          var url = "{% url 'cardio:finalizeReport' %}"
+          var redirect = "{% url 'cardio:reportHistory' %}"
+       
+          if(confirm("Are you sure you want to finalize and submit this report?")){
+       
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrf
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            if (response.ok) {
+              console.log('Success!');
+              alert("Report finalized and submitted successfully")
+              window.location.href = redirect
+  
+            } else {
+              console.log('Error:', response.status);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+
+
+          }
+
+         
+
+    }
+
+
+</script>
+
+
+
+{% endblock %}
