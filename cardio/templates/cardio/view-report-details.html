@@ -40,7 +40,8 @@
 
                                   <li class="list-group-item d-flex justify-content-between align-items-start">
                                     <div class="ms-2 me-auto">
-                                      <div class="fw-bold">Patient type:</div>{{ report.patient_type }}
+                                      <div class="fw-bold">Patient gender:</div>{% if report.patient_type == 'male' %} Male {% else %} Female {% endif %}
+
                                     </div>
                                   </li>
 

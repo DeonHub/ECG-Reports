@@ -245,9 +245,9 @@ def uploadImage(request):
         report.save()
 
 
-        # hospital = Hospital.objects.get(user_id=user.id)
-        # hospital.available_slots -= 1
-        # hospital.save()
+        hospital = Hospital.objects.get(user_id=user.id)
+        hospital.available_slots -= 1
+        hospital.save()
 
         messages.success(request, 'Image/File uploaded successfully!')
         return redirect('hospital:reportHistory') 

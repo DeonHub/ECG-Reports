@@ -5,6 +5,8 @@ app_name = 'cardio'
 
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
+    
+    path('image/', views.image, name="image"),
 
     path('report-history/', views.reportHistory, name="reportHistory"),
     path('finalize-report/', views.finalizeReport, name="finalizeReport"),

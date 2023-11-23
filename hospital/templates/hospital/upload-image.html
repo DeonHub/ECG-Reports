@@ -23,17 +23,21 @@
 
                                 <div class="input-group mt-3">
                                     <label class="input-group-text" for="logo">Patient name</label>
-                                    <input class="form-control" type="text" id="patient_name" name="patient_name"  placeholder="Enter patient name...">
+                                    <input class="form-control" type="text" id="patient_name" name="patient_name"  placeholder="Enter patient name..." required>
                                  </div>
                                 
                                  <div class="input-group mt-3">
-                                    <label class="input-group-text" for="logo">Patient type</label>
-                                    <input class="form-control" type="text" id="patient_type" name="patient_type"  placeholder="Enter patient type...">
+                                    <label class="input-group-text" for="logo">Patient gender</label>
+                                    <select class="form-select" id="patient_type" name="patient_type" required>
+                                        <option value="">Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
                                  </div>
                                  
                                  <div class="input-group mt-3">
                                     <label class="input-group-text" for="logo">Patient age</label>
-                                    <input class="form-control" type="text" id="patient_age" name="patient_age"  placeholder="Enter patient age...">
+                                    <input class="form-control" type="text" id="patient_age" name="patient_age"  placeholder="Enter patient age..." required>
                                  </div>
                                  
                                  <div class="input-group mt-3">

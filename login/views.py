@@ -219,7 +219,7 @@ def register(request):
             hospital = User.objects.create(username=username, email=email, password=password, is_hospital=True)
             hospital.save()
 
-            Hospital.objects.filter(id=hospital.id).create(user_id=hospital.id, hospital_name=hospital_name, logo=logo, country=country, contact=contact, town=town, address=address)
+            Hospital.objects.filter(id=hospital.id).create(user_id=hospital.id, hospital_name=hospital_name, logo=logo, country=country, contact=contact, town=town, address=address, available_slots=available_slots)
 
             messages.success(request, 'Account was created cuccessfully. Please login to continue')
             return redirect('login:login')    

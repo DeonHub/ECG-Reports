@@ -1,6 +1,22 @@
 {% extends 'cardio/base.html' %}
  {% load static %}
+ {% block style %}
+ .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    cursor: zoom-out;
+  }
 
+  .report-image{
+      cursor: zoom-in;
+  }
+ {% endblock %}
 {% block content %}
          
 <div class="mt-5">
@@ -34,7 +50,7 @@
     
         <div class="col">
             <div class="input mb-3">
-                <p><b>Patient type: </b>{{ report.patient_type }}</p>
+                <p><b>Patient gender: </b>{% if report.patient_type == 'male' %} Male {% else %} Female {% endif %}</p>
             </div> 
         </div>
 
@@ -48,7 +64,7 @@
   <hr>
 
   <center>
-    <img src="{{ report.image.url }}" alt="" style="border-radius: 5px;">
+    <img src="{{ report.image.url }}" class="report-image" onclick="toggleFullScreen(this)" alt="" style="border-radius: 5px;">
     <input type="hidden" value="{{ report.id }}" id="report_id" >
   </center>
 
@@ -145,13 +161,13 @@
 
                              <h6 class="mt-5">Conclusion</h6>
                               <div >
-                                <textarea type="text" rows="10" cols="10" class="form-control" name="conclusion" id="conclusion" placeholder="Type conclusion here....">{% if existing %} {{ existing_report.conclusion }} {% endif %}</textarea>
+                                <textarea type="text" rows="3" cols="10" class="form-control" name="conclusion" id="conclusion" placeholder="Type conclusion here....">{% if existing %} {{ existing_report.conclusion }} {% endif %}</textarea>
                               </div>
 
 
                               <h6 class="mt-5">Recommendation</h6>
                               <div >
-                                <textarea type="text" rows="10" cols="10" class="form-control" name="recommendation" id="recommendation" placeholder="Type recommendation here....">{% if existing %} {{ existing_report.recommendation }} {% endif %}</textarea>
+                                <textarea type="text" rows="3" cols="10" class="form-control" name="recommendation" id="recommendation" placeholder="Type recommendation here....">{% if existing %} {{ existing_report.recommendation }} {% endif %}</textarea>
                               </div>
 
 
@@ -353,6 +369,31 @@
          
 
     }
+
+
+
+    function toggleFullScreen(img) {
+        if (img.classList.contains('fullscreen')) {
+          img.classList.remove('fullscreen');
+          img.classList.add('report-image');
+          document.removeEventListener('keydown', exitFullScreen);
+        } else {
+          img.classList.add('fullscreen');
+          img.classList.remove('report-image');
+          document.addEventListener('keydown', exitFullScreen);
+        }
+      }
+      
+      function exitFullScreen(event) {
+        if (event.key === 'Escape') {
+          const img = document.querySelector('.fullscreen');
+          if (img) {
+            img.classList.remove('fullscreen');
+            img.classList.add('report-image');
+            document.removeEventListener('keydown', exitFullScreen);
+          }
+        }
+      }
 
 
 </script>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <head>
-        <title> {{ detail.invoice_no }} </title>
+        <title> {{ report_history.report_number }} </title>
         {% load static %}
 
         <style>
@@ -121,13 +121,13 @@
         <div class="row" style="display: flex; flex-direction: row;">
             <div class="col-6">
                 <h4 class="">Date: <span class="info">{{ report.date_created|date:'jS F, Y' }}</span></h4>
-                <h4 class="">Job Number: <span class="info">{{ report_history.report_number }}</span></h4>
+                <h4 class="">Patient ID: <span class="info">{{ report_history.report_number }}</span></h4>
                 <hr>
-                <h4 class="">Patient: <span class="info">{{ report_history.patient_name|upper  }}</span></h4>
+                <h4 class="">Patient name: <span class="info">{{ report_history.patient_name|upper  }}</span></h4>
                 <h4 class="">Requester: <span class="info">{{ report_history.hospital.hospital_name|upper }}</span></h4>
                 <h4 class="">Patient number: <span class="info">{{ report_history.patient_number|upper }}</span></h4>
                 <h4 class="">Patient age: <span class="info">{{ report_history.patient_age|upper }}</span></h4>
-                <h4 class="">Patient type: <span class="info">{{ report_history.patient_type|upper }}</span></h4>
+                <h4 class="">Patient gender: <span class="info">{% if report_history.patient_type == 'male' %} MALE {% else %} FEMALE {% endif %}</span></h4>
                 <hr>
                 <h4 class="">Study: <span class="info">ELECTROCARDIOGRAM</span></h4>
                 <hr>
@@ -179,77 +179,12 @@
       <p>DR. {{ report_history.cardiologist.user.username|upper }}</p>
       </div>
  
-    {% comment %} <div class="body-section">
-
-        <table class="table-bordered">
-            <thead>
-                <tr>
-                    <th>Fee Item</th>
-                    <th class="w-20">Price({{base}})</th>
-                    <th class="w-20">Total({{base}})</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for key, value in data.items %}
-                <tr>
-                    <td> {{ key }} </td> 
-                    <td> {{ value }} </td>
-                    <td> {{ value }} </td>
-                </tr>
-            {% endfor %}
-
-                <tr>
-                    <td colspan="2" class="text-right">Grand Total ({{base}})</td>
-                    <td> {{ invoice.total_amount }} </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="text-right">Renewal Bill ({{base}})</td>
-                    <td> {{ detail.expiration_bill }} </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="text-right">Amount Paid ({{base}})</td>
-                    <td> {{ detail.amount_paid }} </td>
-                </tr>
-               
-            </tbody>
-        </table> 
-
-        <br>
-        {% if detail.payment_status == 'part' %}
-        <h3 class="">Payment Status: Part </h3>
-        {% else %}
-        <h3 class="">Payment Status: Full </h3>
-        {% endif %}
-        {% if detail.arrears %}
-        <h3 class="">Arrears: {{base}} {{ detail.arrears }}</h3>
-        {% else %}
-        <h3 class="">Arrears: None</h3>
-        {% endif %}
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-        
-        <div style=" margin-left: 600px; text-align: center;">
-        <img src={{ company.signature.url }} height="50px" width="50px"><br/>
-        ............................................
-        <p>The Manager</p>
-        </div>
-   
-
-    </div> {% endcomment %}
-
-
-
     <br/>
     <br/>
     <br/>
     <br/>
     <div class="body-section" style="float: right; text-align: center;">
-        <p>&copy; Copyright {{ year }} - GR8TM3NS COMPANY LIMITED. All rights reserved. 
-            <a href="https://gr8tm3ns-rental-agency.business.site/" class="float-right">https://gr8tm3ns-rental-agency.business.site/</a>
-        </p>
+        <p><b>DISCLAIMER:</b> It is an online interpretation of medical imaging based on the available clinical data. Patient's identification in online reporting is not established, so this report cannot be utilized for any medico legal purpose / certifications.All modern machines / procedures have their own limitations. If there is any clinical discrepancy, this investigation may be repeated or reassessed by other tests.</p>
     </div>      
 </div>      
 
