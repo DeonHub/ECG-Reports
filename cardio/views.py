@@ -19,10 +19,6 @@ from xhtml2pdf import pisa
 from django.views.decorators.csrf import csrf_exempt
 
 
-def image(request):
-    template_name = 'cardio/image.html'
-    return render(request, template_name)
-
 
 # Create your views here.
 @login_required(login_url='login:login')
